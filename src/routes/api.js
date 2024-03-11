@@ -19,6 +19,11 @@ router.get(
 // task create. task update, task delete, task update
 router.post("/task/create", AuthMiddleware, TaskController.create);
 router.post("/task/update/:id", AuthMiddleware, TaskController.update);
+router.post(
+  "/task/updateStatus/:id",
+  AuthMiddleware,
+  TaskController.updateStatus
+);
 router.get("/task/read", AuthMiddleware, TaskController.read);
 router.get("/task/delete/:id", AuthMiddleware, TaskController.delete);
 

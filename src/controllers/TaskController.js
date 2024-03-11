@@ -26,6 +26,22 @@ exports.update = async (req, res) => {
   }
 };
 
+exports.updateStatus = async (req, res) => {
+  try {
+    let email = req.headers["email"];
+    let { id } = req.params;
+    let ToDoStatus = req.body["status"];
+    await TaskModel.updateOne(
+      { _id: id, email: email },
+      { $set: { status: ToDoStatus } }
+    );
+
+    res.json({ status: "success", message: ToDoStatus });
+  } catch (err) {
+    res.json({ status: "fail", message: err });
+  }
+};
+
 exports.read = async (req, res) => {
   try {
     let email = req.headers["email"];
